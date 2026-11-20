@@ -16,7 +16,7 @@ In Rust, values are immutable by default. You opt in to mutation, which helps pr
 
 ::left::
 
-### Java - True Immutability Doesn't Exist
+### Java - `final` Isn't Immutability
 
 ```java
 int x = 5;
@@ -26,11 +26,11 @@ final int y = 5;
 y = 10; // Error! Final cannot be overwritten
 
 final List<Integer> values = new ArrayList<>();
-values.add(new Integer(1)); // no error...
+values.add(1); // no error...
 values = new ArrayList<>(); // Error!
 ```
 
-Java only has `final`, which isn't even true immutability, it only refers to the variable not being able to be overwritten.
+`final` only stops the variable being reassigned; the object it points to can still change. Immutable types exist (e.g., `String`, records), but the compiler can't stop a method changing an object you pass to it.
 
 ::right::
 
@@ -54,7 +54,7 @@ println!("count: {}", counter.peek());
 counter.increment(); // Error!
 ```
 
-Rust forces you to declare mutability using `mut`.
+Rust forces you to declare mutability using `mut`, and `&self` vs `&mut self`.
 
 ---
 level: 3
@@ -63,7 +63,7 @@ layout: comparison
 
 ## Nullability
 
-In Rust `null` doesn't exist: if a value should be somewhere, it is, and it's impossible for it to not be.
+Safe Rust has no `null`: if a type says a value is there, it is, and if it might be missing, the type says that too.
 
 ::left::
 
@@ -83,7 +83,7 @@ public class Example {
 }
 ```
 
-Java doesn't prevent nulls from appearing where values are expected; it just throws errors at runtime.
+Java doesn't prevent nulls from appearing where values are expected. `Optional` exists, but nothing forces you to use it, so you find out at runtime.
 
 ::right::
 
@@ -109,7 +109,7 @@ layout: comparison
 
 ## Results over Exceptions
 
-There are no exceptions in Rust, instead functions return Results, which can be either `Ok` or any type to represent an error.
+There are no exceptions in Rust. Instead, functions that can fail return a `Result`, which is either `Ok(value)` or `Err(error)`, where the error can be any type. (Panics exist, but they're for bugs, not expected errors.)
 
 ::left::
 
@@ -117,7 +117,7 @@ There are no exceptions in Rust, instead functions return Results, which can be 
 
 ```java
 int parseInt(String s) {
-    return Integer.parseInt(s); // throws Exception
+    return Integer.parseInt(s); // throws NumberFormatException
 }
 
 try {
@@ -127,7 +127,7 @@ try {
 }
 ```
 
-Exceptions can be checked to ensure that they are caught, however it is completely unique syntax and feels like a "bolt on".
+Checked exceptions must be declared and caught, but many (like `NumberFormatException`) are unchecked, so nothing in the signature warns you and the compiler doesn't make you handle them.
 
 ::right::
 
@@ -147,4 +147,4 @@ let n = match parse_int("abc") {
 };
 ```
 
-By adding errors to the return type it is more obvious what can and cannot fail. Just make sure to not be like Cloudflare and use `unwrap` in prod (Rust equivalent of unchecked exceptions).
+By adding errors to the return type it is more obvious what can and cannot fail. Just make sure to not be like Cloudflare and use `unwrap` in prod (it panics on an `Err`, crashing much like an uncaught exception).

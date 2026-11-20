@@ -32,7 +32,7 @@ switch (status) {
 }
 ```
 
-Java enums are basically a way to remove "magic numbers/strings". The only way Java can replicate ADTs is with sealed interfaces.
+Java enums are a fixed set of constants. They can have fields and methods, but every constant has the same shape. For real ADTs you need sealed interfaces and records (Java 17+).
 
 ::right::
 
@@ -52,7 +52,7 @@ match status {
 }
 ```
 
-In Rust, **invalid states are unrepresentable**.
+In Rust, you can make **invalid states unrepresentable**.
 
 ---
 level: 3
@@ -68,20 +68,17 @@ Inheritance (not subtyping) is a horrible anti pattern that forces developers in
 ### Java - Inheritance
 
 ```java
-// B and C inherit from A and both override doSomething
+// java.util.Stack has extended Vector since Java 1.0
+Stack<String> stack = new Stack<>();
+stack.push("first");
+stack.push("second");
 
-class D extends B, C {
-  @Override
-  public void doSomething() {
-    B.super.doSomething();
-    C.super.doSomething();
-    // which one do I use?!?!
-    // (double diamond problem)
-  }
-}
+// ...so it inherits every Vector method
+stack.add(0, "sneaky"); // insert at the bottom
+stack.remove(1);        // remove from the middle
 ```
 
-Although Java now has interfaces, inheritance is littered across the standard library (e.g., [AWT/Swing](https://www.cs.vu.nl/~eliens/afstuderen/media/@archive/online/archive/documents/java/swing/swingdoc-static/tool_set.html)).
+Java only allows single class inheritance, but deep hierarchies are still littered across the standard library (e.g., [AWT/Swing](https://www.cs.vu.nl/~eliens/afstuderen/media/@archive/online/archive/documents/java/swing/swingdoc-static/tool_set.html)).
 
 ::right::
 
@@ -103,7 +100,7 @@ impl Greet for Person {
 }
 ```
 
-Rust uses traits to create behavioural contracts on structs. Dynamic dispatch is possible using `Box<dyn Greet>` (heap allocation).
+Rust uses traits to create behavioural contracts that any type (structs, enums, even `i32`) can implement. Dynamic dispatch is possible using `&dyn Greet` or `Box<dyn Greet>`.
 
 ---
 level: 3
@@ -152,14 +149,13 @@ cargo new my-app
 cd my-app
 
 # manually edit
-nvim cargo.toml
+nvim Cargo.toml
 
-# or install cargo extension
-cargo install cargo-edit
+# or add a dependency from the command line
 cargo add some-package
 
 cargo test
 cargo run
 ```
 
-I have never come across a Rust project that isnt using vanilla cargo.
+Almost every Rust project uses plain cargo. Only a few huge codebases (e.g., Chromium, the Linux kernel) use their own build systems.

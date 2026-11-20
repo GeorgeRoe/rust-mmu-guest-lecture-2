@@ -17,20 +17,12 @@ level: 2
 
 **G**reen **U**sage **I**mpact **L**ogging **T**ool
 
-<v-clicks>
-
 - A CLI that tracks the **carbon emissions of your jobs** on a supercomputer
 - HPC users get little to no feedback on their footprint - what tracking exists is usually admin-only
 - Kiran Jonathan's idea, developed by me, now run by the **SCD Energy Efficiency Team**
 - Presets for **ARCHER2**, **Isambard 3**, **Isambard-AI** and **SCARF**
 
-</v-clicks>
-
-<div v-click>
-
 ![GUILT repo](https://opengraph.githubassets.com/1/SCD-Energy-Efficiency-Team/guilt){.w-xs.mt-4}
-
-</div>
 
 <!--
 - Works with SLURM (the job scheduler most HPCs use): wraps sbatch, reads sacct, looks up grid carbon intensity, works out emissions per job.
@@ -70,15 +62,11 @@ guilt/
 
 ::right::
 
-<v-clicks>
-
 - **80 files**, 15 of them just interfaces
 - A hand-rolled **dependency injector**
 - Stuck on **Python 3.9** - the oldest version on the HPCs I targeted
 - Installed with `pip install git+https://...` on a login node
 - Every JSON field validated by hand - mistakes only found **at runtime**
-
-</v-clicks>
 
 <!--
 - Joke lands with this audience: look familiar? interfaces/, repositories/, an injector... this is a Spring Boot app wearing a Python costume.
@@ -209,8 +197,6 @@ First Rust commit 9th August 2025, **v1.0.0 on 27th August**.
 
 ### What I gained
 
-<v-clicks>
-
 - **One binary** per architecture - `x86_64` and `aarch64`
 - No Python, no pip, no venv:
   ```sh
@@ -220,20 +206,14 @@ First Rust commit 9th August 2025, **v1.0.0 on 27th August**.
 - Whole classes of bugs caught by the compiler, not by users
 - I got to use Rust
 
-</v-clicks>
-
 ::right::
 
 ### What it cost
-
-<v-clicks>
 
 - Fighting the borrow checker for the first week
 - Cross-compiling for ARM in CI took some setting up
 - More lines of code - Rust is explicit
 - Compile times are noticeably slower than "just run it"
-
-</v-clicks>
 
 <!--
 - 18 days from first Rust commit to v1.0.0, with the Python version as a spec.

@@ -1,8 +1,8 @@
 # Rust MMU Guest Lecture
 
-The slides for my MMU Guest Lecture on the rust programming language given on the 28th November 2025.
+The slides for my MMU Guest Lecture on the rust programming language given on the 20th November 2026.
 
-To view the slides either visit the [GitHub pages site for this repo](https://georgeroe.github.io/rust-mmu-guest-lecture), or clone and start the slideshow locally:
+To view the slides either visit the [GitHub pages site for this repo](https://georgeroe.github.io/rust-mmu-guest-lecture-2), or clone and start the slideshow locally:
 
 ```sh
 npm i

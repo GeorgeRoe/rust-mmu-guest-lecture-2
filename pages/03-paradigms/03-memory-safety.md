@@ -12,7 +12,7 @@ layout: comparison
 
 ## Memory Deallocation
 
-Rust frees memory deterministically at compile time using ownership rules. This means there are no GC pauses and also no manual memory management (e.g., `free()`).
+Rust uses ownership rules to work out at compile time exactly where memory should be freed, so it's freed deterministically at runtime. This means there are no GC pauses and also no manual memory management (e.g., `free()`).
 
 ::left::
 
@@ -23,11 +23,11 @@ Object data = new Object();
 // Freed when GC decides
 ```
 
-Memory is reclaimed unpredictably and may pause execution.
+Memory is reclaimed unpredictably and may pause execution (modern collectors keep pauses short, but there is still a collector running).
 
 ::right::
 
-### Rust — Compiled
+### Rust — Freed at End of Scope
 
 ```rust
 {
@@ -35,7 +35,7 @@ Memory is reclaimed unpredictably and may pause execution.
 } // freed here immediately
 ```
 
-Memory is released when values go out of scope leading to zero runtime cost.
+Memory is released as soon as values go out of scope, with no garbage collector running in the background.
 
 ---
 level: 3
@@ -60,14 +60,14 @@ class IntBox {
 }
 
 IntBox a = new IntBox(1);
-b = a; // Two references to the same object
+IntBox b = a; // Two references to the same object
 
 a.value = 2;
 
 System.out.println(b.value); // 2
 ```
 
-It is not only possible, but very easy for two variables to point to the same instance. This can lead to data races.
+It is not only possible, but very easy for two variables to point to the same instance. Any code holding a reference can change it, and if that code is on another thread, you get data races.
 
 ::right::
 
@@ -79,16 +79,18 @@ struct IntBox {
 }
 
 let mut a = IntBox { value: 1 };
-let b = &mut a; // cannot have two mutable references
 
-let c = &a; // both types of reference can't coexist
+let b = &mut a;
+let c = &a; // Error! can't borrow a while b is in use
+b.value = 2;
 
-c.value = 2; // cannot mutate an immutable reference
+let d = &a;
+d.value = 3; // Error! d is an immutable reference
 
-let d = a;
-println!("{}", a.value); // a's data has been moved
+let e = a; // ownership moves to e
+println!("{}", a.value); // Error! a has been moved
 ```
 
 - At most one mutable reference can exist at a time
 - Multiple immutable references are allowed
-- Mutable and immutable references cannot coexist
+- Mutable and immutable references cannot coexist (a reference lasts until its last use)
