@@ -16,12 +16,6 @@ level: 2
 - First year of the apprenticeship at a small web development company
 - Not a Rust expert - just someone who uses it at work and for fun
 
-<!--
-- Final year now, same course you might be on / thinking about.
-- Web dev company first, then moved to STFC - so I've seen both small agency work and big public sector research.
-- Set expectations: I'm not on the Rust core team, I'm a working developer who picked it up a couple of years ago.
--->
-
 ---
 level: 2
 ---
@@ -67,10 +61,3 @@ fn main() {
 ````
 
 </v-click>
-
-<!--
-- Rustlings is ~90 tiny exercises, run in your terminal, it watches the files and re-checks as you edit.
-- [click] First exercise: assign to x.
-- [click] The compiler doesn't just say "error" - it tells you what you probably meant.
-- [click] Fix it, move on. That feedback loop - compiler telling you exactly what's wrong - is the theme of this whole talk, and it comes back in the AI section.
--->

@@ -21,13 +21,6 @@ level: 2
 - Large-scale science: ISIS Neutron and Muon Source, Central Laser Facility, Hartree Centre
 - Works with **CERN**, **ESO**, **ESS** and **NASA**
 
-<!--
-- One of the nine councils under UK Research and Innovation.
-- Daresbury is 30 mins from here - SciTech Daresbury campus (the photo).
-- Big facilities: ISIS and CLF are at RAL, Hartree Centre (supercomputing) is at Daresbury.
-- Point: the software we write supports actual science, not ad clicks.
--->
-
 ---
 level: 2
 ---
@@ -66,10 +59,3 @@ class: text-center
 [stfccareers.co.uk/graduates](https://stfccareers.co.uk/graduates/)
 
 </div>
-
-<!--
-- Applications open in January - set a reminder now.
-- The assessment centre includes a Q&A with current graduates - ask them anything.
-- Questions about the scheme: stfcgraduates@ukri.org, or grab me after.
-- Also mention: apprenticeships and summer/industrial placements exist if you're not graduating yet.
--->
