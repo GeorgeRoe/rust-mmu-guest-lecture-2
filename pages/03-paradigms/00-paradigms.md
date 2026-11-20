@@ -2,27 +2,17 @@
 layout: center
 ---
 
-# Things Rust Does Well
-
-<!--
-- Rather than a quick tour of ten features, we're going deep on four:
-  1. Enums and pattern matching
-  2. Traits instead of inheritance
-  3. Ownership and borrowing
-  4. Zero-cost abstractions
-- Each one builds on the one before, and you'll see all four in real code in the GUILT and Leptos sections afterwards.
--->
+# Rust vs Java
 
 ---
 level: 2
-class: flex flex-col justify-center text-center
 ---
 
-## Other Things We Don't Have Time For
+## Intro to this section
 
-<FeatureMarquee class="mt-8 -mx-14" />
+Given the popularity of Java with universities, I assume you will all be pretty familiar with Java's idioms and quirks. I will be comparing Rust to Java to show how it forces you to write better code.
 
-<!--
-- Everything scrolling past is something great about Rust that I'm not going to cover today.
-- Instead of skimming all of it, we're going deep on three.
--->
+Why am I not comparing to C++?
+
+1. I believe that Rust is suited to the kind of projects you make in Java (e.g., backend systems, CLIs) so the comparison should be slightly more relevant
+2. Java is used pretty much everywhere, and lots of Rust code is rewrites of other projects

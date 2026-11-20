@@ -40,15 +40,15 @@ src: ./pages/03-paradigms/00-paradigms.md
 ---
 
 ---
-src: ./pages/03-paradigms/01-enums.md
+src: ./pages/03-paradigms/01-awesome-features.md
 ---
 
 ---
-src: ./pages/03-paradigms/02-traits.md
+src: ./pages/03-paradigms/02-explicitness.md
 ---
 
 ---
-src: ./pages/03-paradigms/03-ownership.md
+src: ./pages/03-paradigms/03-memory-safety.md
 ---
 
 ---
@@ -65,6 +65,14 @@ src: ./pages/06-ai.md
 
 ---
 layout: center
+hideInToc: true
+class: text-center
 ---
 
-# Thanks!
+# Thank You
+
+Any Questions?
+
+![Slides repo](https://opengraph.githubassets.com/1/georgeroe/rust-mmu-guest-lecture-2){.w-sm.mx-auto}
+
+https://georgeroe.github.io/rust-mmu-guest-lecture-2

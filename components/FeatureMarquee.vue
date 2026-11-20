@@ -23,7 +23,6 @@ const words = [
   'Everything is an expression',
   'Slices',
   'String vs &str',
-  'Smart pointers',
   'Box / Rc / Arc',
   'Send & Sync',
   'Const generics',
