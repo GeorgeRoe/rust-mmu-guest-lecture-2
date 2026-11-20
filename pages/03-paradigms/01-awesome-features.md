@@ -61,7 +61,7 @@ layout: comparison
 
 ## No Inheritance
 
-Inheritance (not subtyping) is a horrible anti pattern that forces developers into corners that never needed to exist. Rust gets rid of inheritance entirely, relying on traits and implementations instead.
+Inheritance (not subtyping) is a horrible feature that is never better than an alternative solution.
 
 ::left::
 
@@ -84,25 +84,85 @@ https://stfc-early-careers-code-club.github.io/talks/inheritance-is-evil
 
 ::right::
 
-### Rust - Traits
+### Rust - Composition
 
 ```rust
-trait Greet {
-  fn greet(&self);
+pub struct Stack<T> {
+  items: Vec<T>, // private
 }
 
-struct Person {
-  name: String
+impl<T> Stack<T> {
+  pub fn new() -> Self { Self { items: Vec::new() } }
+  pub fn push(&mut self, item: T) { self.items.push(item) }
+  pub fn pop(&mut self) -> Option<T> { self.items.pop() }
+  pub fn peek(&self) -> Option<&T> { self.items.last() }
 }
 
-impl Greet for Person {
-  fn greet(&self) {
-    println!("Hello, {}!", self.name);
+let mut stack = Stack::new();
+stack.push("first");
+stack.insert(0, "sneaky"); // error: no method named `insert`
+```
+
+With no inheritance, composition is the default. The `Vec` is an implementation detail, and `Stack` only exposes the methods a stack should have.
+
+---
+level: 3
+layout: comparison
+---
+
+## Traits
+
+Traits are behavioural contracts, and unlike Java interfaces, they can be implemented after the type itself.
+
+::left::
+
+### Java - Interfaces
+
+```java
+interface Describable { String describe(); }
+
+// your interface on someone else's class: impossible
+// (String is final, and you can't edit java.lang)
+class DescribableString implements Describable {
+  private final String inner;
+  DescribableString(String s) { inner = s; }
+  public String describe() { return "text: " + inner; }
+}
+
+record Person(String name) implements Comparable<Person> {
+  public int compareTo(Person o) {
+    return name.compareTo(o.name);
   }
 }
 ```
 
-Rust uses traits to create behavioural contracts that any type (structs, enums, even `i32`) can implement.
+Adding behaviour to a type you don't own means wrapping it in a new class.
+
+::right::
+
+### Rust - Traits
+
+```rust
+trait Describe { fn describe(&self) -> String; }
+
+// your trait on someone else's type
+impl Describe for i32 {
+  fn describe(&self) -> String {
+    format!("the number {self}")
+  }
+}
+
+// someone else's trait on your type
+struct Person { name: String }
+impl fmt::Display for Person {
+  fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+    write!(f, "{}", self.name)
+  }
+}
+
+42.describe();
+println!("{person}");
+```
 
 ---
 level: 3

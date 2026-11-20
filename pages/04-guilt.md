@@ -55,7 +55,6 @@ guilt/
 - A hand-rolled **dependency injector**
 - Stuck on **Python 3.9** - the oldest version on the HPCs I targeted
 - Installed with `pip install git+https://...` on a login node
-- Every JSON field validated by hand - mistakes only found **at runtime**
 
 ---
 level: 2
@@ -163,7 +162,7 @@ First Rust commit 9th August 2025, **v1.0.0 on 27th August**.
 
 ### What I gained
 
-- **One binary** per architecture - `x86_64` and `aarch64`
+- One binary per architecture - `x86_64` and `aarch64`
 - No Python, no pip, no venv:
   ```sh
   curl -sSL .../install-release.sh | sh
