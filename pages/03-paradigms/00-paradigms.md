@@ -16,3 +16,12 @@ Why am I not comparing to C++?
 
 1. I believe that Rust is suited to the kind of projects you make in Java (e.g., backend systems, CLIs) so the comparison should be slightly more relevant
 2. Java is used pretty much everywhere, and lots of Rust code is rewrites of other projects
+
+---
+level: 2
+class: flex flex-col justify-center text-center
+---
+
+## This List Is Not Exhaustive
+
+<FeatureMarquee class="mt-8 -mx-14" />

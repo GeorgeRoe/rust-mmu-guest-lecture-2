@@ -80,6 +80,8 @@ stack.remove(1);        // remove from the middle
 
 Java only allows single class inheritance, but deep hierarchies are still littered across the standard library (e.g., [AWT/Swing](https://www.cs.vu.nl/~eliens/afstuderen/media/@archive/online/archive/documents/java/swing/swingdoc-static/tool_set.html)).
 
+https://stfc-early-careers-code-club.github.io/talks/inheritance-is-evil
+
 ::right::
 
 ### Rust - Traits
@@ -100,7 +102,7 @@ impl Greet for Person {
 }
 ```
 
-Rust uses traits to create behavioural contracts that any type (structs, enums, even `i32`) can implement. Dynamic dispatch is possible using `&dyn Greet` or `Box<dyn Greet>`.
+Rust uses traits to create behavioural contracts that any type (structs, enums, even `i32`) can implement.
 
 ---
 level: 3
